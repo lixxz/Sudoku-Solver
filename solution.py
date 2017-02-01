@@ -102,6 +102,7 @@ def eliminate(values):
             value = values[box]
             for peer in peers[box]:
                 values[peer] = values[peer].replace(value, '')
+                assign_value(values, peer, values[peer].replace(value, ''))
     return values
 
 def only_choice(values):
@@ -113,6 +114,7 @@ def only_choice(values):
             #if present at only one place
             if len(dplaces) == 1:
                 values[dplaces[0]] = digit
+                assign_value(values, dplaces[0], digit)
     return values
 
 def reduce_puzzle(values):
